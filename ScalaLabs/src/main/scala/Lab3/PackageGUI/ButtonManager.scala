@@ -58,7 +58,6 @@ class ButtonManager(
 
 
 
-//TODO Назвать корректно, он не прям билдит, еще и хранит.
 object ButtonManager {
 
   def createAddToOrderButton(
@@ -116,5 +115,15 @@ object ButtonManager {
     val applyAdditionAction = ApplyAddition(applyAdditionDialog, orderedTable)
     
     new ButtonManager(applyAdditionButton, applyAdditionAction)
+  }
+  
+  def createGetCheckButton(
+                          orderedDrinks: ObservableBuffer[(Drink, Double)]
+                          ): ButtonManager = {
+    val getCheckButton = new Button("Получить чек")
+    
+    val getCheckAction = getCheck(orderedDrinks)
+    
+    new ButtonManager(getCheckButton, getCheckAction)
   }
 }

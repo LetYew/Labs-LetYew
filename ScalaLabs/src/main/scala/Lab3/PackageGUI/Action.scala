@@ -24,8 +24,6 @@ case class AddToOrderAction(
       case null => println("WARNING: No drink selected to ADD")
       case _ => orderedDrinks += selectedDrink
     }
-
-
   }
 }
 
@@ -73,5 +71,41 @@ case class ApplyAddition(
     if(selected != null) {
       applyAdditionDialog.showAndWait()
     }
+  }
+}
+
+case class getCheck(
+                     orderedDrinks: ObservableBuffer[(Drink, Double)]
+                   ) extends Action {
+  override def executeAction(): Unit = {
+    var totalCost: Double = 0d
+    if (orderedDrinks.isEmpty) {
+      println("==========ORDER IS EMPTY==========")
+      return
+    }
+    orderedDrinks.foreach { case (key, value) =>
+      println("==========CHECK FOR ORDER==========")
+      var drinkCost: Double = 0d
+      println(s"Drink: ${key.drinkName}, Value: $value")
+
+      drinkCost += value
+
+      //тут я не придумал как печатать в одной строке, типа println(s"Additions: ${...}"), так что вынес вовне
+      println("Additions: ")
+      //match case чтобы если допов(Additions) нет вывести явно в текст
+      key.additions match {
+        case Nil =>
+          println("\tNo Additions")
+        case _ =>
+          key.additions.foreach(item =>
+            println('\t' + item.name + ": " + item.additionalPrice)
+            drinkCost += item.additionalPrice
+          )
+      }
+      totalCost += drinkCost
+      println(s"Total Drink Cost: ${drinkCost}")
+    }
+    println("==========")
+    println(s"\tTotal Order Cost is: ${totalCost}")
   }
 }
