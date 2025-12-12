@@ -19,23 +19,3 @@ def readFullDrink():FullDrink = {
 
 def addAddition(fullDrink: FullDrink, addition: Addition):FullDrink =
   FullDrink(fullDrink.drink, fullDrink.additions.appended(addition))
-
-  /**
-   * LAZYGIT
-   */
-
-//LazyList с Action, стек(???)
-/*
-* Button -> LazyList[Promise[Action]]
-*
-* def promiseActionToButton(): LazyList[Promise[Action]] =
-* Promise[Action]() #::
-
-* case class Button(handler:() =>
-    promises match {
-    * case h#::t =>
-    *   h.complete(Action)
-        promises = t
-    * }
-    var promises = promisesActionToButton()
-    */

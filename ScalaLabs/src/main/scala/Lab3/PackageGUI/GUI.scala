@@ -31,7 +31,6 @@ import scala.language.postfixOps
  * </p>
  * */
 
-//TODO ПОЧИНИТЬ УЖЕ APPLY ADDITION DIALOG ЧТОБЫ ЗАКРЫВАЛСЯ НОРМАЛЬНО
 case class GUI(createdMenu: myMenu) extends JFXApp3 {
 
   val additions = ObservableBuffer[Addition]()
@@ -168,7 +167,8 @@ case class GUI(createdMenu: myMenu) extends JFXApp3 {
     val removeFromOrderButtonManager = createRemoveFromOrderButton(orderTable, selectedDrinks)
     val clearOrderButtonManager = createClearOrderButton(selectedDrinks)
     val createNewAdditionButtonManager = createNewAdditionCreationButton(additions)
-    val applyAdditionManager = createApplyAdditionButton(additions, orderTable, selectedDrinks)
+    val applyAdditionButtonManager = createApplyAdditionButton(additions, orderTable, selectedDrinks)
+    val getCheckButtonManager = createGetCheckButton(selectedDrinks)
 
     //Кидаем в контейнер
     //Контейнер для удобства. Здесь не используется, но вообще с ним удобнее
@@ -176,7 +176,8 @@ case class GUI(createdMenu: myMenu) extends JFXApp3 {
       .addButton("RemoveFromOrder", removeFromOrderButtonManager)
       .addButton("ClearOrder", clearOrderButtonManager)
       .addButton("CreateNewAddition", createNewAdditionButtonManager)
-      .addButton("ApplyAddition", applyAdditionManager)
+      .addButton("ApplyAddition", applyAdditionButtonManager)
+      .addButton("GetCheck", getCheckButtonManager)
 
 
     //Текстовое поле показывает полную стоимость заказа
@@ -194,7 +195,8 @@ case class GUI(createdMenu: myMenu) extends JFXApp3 {
         addToOrderButtonManager.button,
         removeFromOrderButtonManager.button,
         clearOrderButtonManager.button,
-        applyAdditionManager.button
+        getCheckButtonManager.button,
+        applyAdditionButtonManager.button
       )
     }
 
@@ -225,8 +227,9 @@ case class GUI(createdMenu: myMenu) extends JFXApp3 {
     stage = new JFXApp3.PrimaryStage {
       title.value = "Lab3 GUI"
       //размеры окна
-      width = 600
+      width = 650
       height = 600
+      resizable = false
 
       //Содержание виджета
       scene = new Scene {

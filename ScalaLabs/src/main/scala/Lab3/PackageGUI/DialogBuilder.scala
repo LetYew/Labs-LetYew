@@ -18,11 +18,11 @@ case class BuildCreateAdditionDialog(
                                       additions: ObservableBuffer[Addition]
                                     ) extends DialogBuilder {
 
-  val additionNameInput: TextField = new TextField() {
+  private val additionNameInput: TextField = new TextField() {
     text = ""
     promptText = "Сахар, Соль, Стаут"
   }
-  val additionPriceInput: TextField = new TextField() {
+  private val additionPriceInput: TextField = new TextField() {
     text = ""
     promptText = "Значение >0"
   }
@@ -53,7 +53,9 @@ case class BuildCreateAdditionDialog(
     //Решает что случится когда пользователь нажмет на каждую кнопку
     additionCreateDialog.resultConverter = {
       case ButtonType.Apply => {
-        if(additionNameInput.text.value != "" && additionPriceInput.text.value.toDoubleOption.isDefined){
+        if(additionNameInput.text.value != "" &&
+          additionPriceInput.text.value.toDoubleOption.isDefined &&
+          additionPriceInput.text.value.toDouble >= 0){
           additions.add(Addition(additionNameInput.text.value, additionPriceInput.text.value.toDouble))
         }
         else {
@@ -113,9 +115,9 @@ case class BuildApplyAdditionDialog(
     applyAdditionDialog.dialogPane().buttonTypes = Seq(ButtonType.Cancel, ButtonType.Apply)
 
     //Обработчик результата
+    //Возвращается updated лист
     applyAdditionDialog.resultConverter = {
       case ButtonType.Apply => {
-        //TODO ASK Иммутабельности никакой, так вообще можно???
         val selectedAddition: Addition = selectAddition.value.value
         if(selectedAddition != null){
           val selected = orderTable.selectionModel().selectedItem.value
