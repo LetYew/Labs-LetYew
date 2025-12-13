@@ -4,6 +4,7 @@ import Lab3.MenuClasses.Drink
 import scalafx.Includes.*
 import scalafx.collections.ObservableBuffer
 import scalafx.scene.control.*
+
 import scala.language.postfixOps
 
 
@@ -22,7 +23,7 @@ case class AddToOrderAction(
     val selectedDrink: (Drink, Double) = menuTable.selectionModel().selectedItem.value
     selectedDrink match {
       case null => println("WARNING: No drink selected to ADD")
-      case _ => orderedDrinks += selectedDrink
+      case _ => copy(orderedDrinks = (orderedDrinks += selectedDrink))
     }
   }
 }
@@ -37,7 +38,7 @@ case class RemoveFromOrderAction(
     val selectedDrink: (Drink, Double) = orderTable.selectionModel().selectedItem.value
     selectedDrink match {
       case null => println("WARNING: No drink selected to REMOVE")
-      case _ => orderedDrinks -= selectedDrink
+      case _ => copy(orderedDrinks = (orderedDrinks -= selectedDrink))
     }
   }
 }

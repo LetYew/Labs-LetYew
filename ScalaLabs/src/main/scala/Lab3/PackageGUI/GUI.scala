@@ -2,7 +2,7 @@ package Lab3.PackageGUI
 
 import Lab3.MenuClasses.{Addition, Drink, Producer, myMenu}
 import Lab3.PackageGUI.*
-import Lab3.PackageGUI.ButtonManager._
+import Lab3.PackageGUI.ButtonManager.*
 import javafx.scene.paint.Color.*
 import scalafx.Includes.*
 import scalafx.application.JFXApp3

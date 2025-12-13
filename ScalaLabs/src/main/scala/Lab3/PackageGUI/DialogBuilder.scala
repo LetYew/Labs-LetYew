@@ -7,6 +7,7 @@ import scalafx.collections.ObservableBuffer
 import scalafx.scene.control.*
 import scalafx.scene.control.Alert.AlertType
 import scalafx.scene.layout.VBox
+
 import scala.language.postfixOps
 
 sealed trait DialogBuilder {
@@ -122,6 +123,7 @@ case class BuildApplyAdditionDialog(
         if(selectedAddition != null){
           val selected = orderTable.selectionModel().selectedItem.value
           val newDrink: Drink = selected._1.copy(additions = selected._1.additions :+ selectedAddition)
+
           orderedDrinks.update(orderedDrinks.indexOf(selected), (newDrink, selected._2))
         }
       }
