@@ -1,6 +1,6 @@
 package Lab3
 
-import Lab3.MenuClasses.{BlackTea, Drink, GreenTea, Producer, myMenu}
+import Lab3.MenuClasses.*
 import Lab3.PackageGUI.GUI
 
 import scala.language.postfixOps
@@ -31,19 +31,7 @@ import scala.language.postfixOps
  * <strong>формировать меню</strong> и <strong>пересчитывать его стоимость</strong>.
  * </p>
  * <hr>
- * <p>В общем, что сделано в итоге:<br>
- * Есть система заказа с "полноценным" GUI реализованным силами ScalaFX.
- * Полученный виджет позволяет составить заказ из нескольких позиций, добавить к каждой позиции дополнение,
- * создать новое дополнения для напитка и вернуть форматированный чек по заказу<br>
- * <b>LazyList[]</b> был применен для организаци GUI, в частности для обработки кннопок.
- * В итоговом проекте нет необходимости(на наш взгляд) применять <b>LazyList</b> где либо еще.
- * <ul>
- * <li>Для организзации Меню нет смысла, т.к. меню - относительно небольшой объект, да и Map просто логичнее</li>
- * <li>Для хранения заказов тоже нет необходимости, тем более что в рамках ScalaFX
- * для динамически обновляемых таблиц нужны скорее Observable... данные</li>
  *
- *
- * </ul>
  *
  * <br>
  * <img src = "LiterallyTargetAudience.jpg">
@@ -61,8 +49,7 @@ def main(): Unit = {
   
   val CaffeMenu = myMenu.myMenu.addDrink(PlainBlackTea)
     .addDrink(PlainGreenTea)
-  
-  println(CaffeMenu.calculateTotal())
+
     
   println("DRAWING GUI")
   val test: Unit = GUI(CaffeMenu).main(Array())

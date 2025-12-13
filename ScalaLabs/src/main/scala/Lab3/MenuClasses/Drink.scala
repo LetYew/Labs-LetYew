@@ -1,6 +1,5 @@
 package Lab3.MenuClasses
 
-
 /**
  * <h1>Это попытка в Ф(ОО)П</h1>
  * <p>
