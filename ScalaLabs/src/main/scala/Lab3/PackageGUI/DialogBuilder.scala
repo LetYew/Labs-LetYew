@@ -82,7 +82,7 @@ case class BuildCreateAdditionDialog(
 
 
 
-
+//Возвращает диалоговое окно
 case class BuildApplyAdditionDialog(
                                       additions: ObservableBuffer[Addition],
                                       orderTable: TableView[(Drink, Double)],

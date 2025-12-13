@@ -6,7 +6,7 @@ import Lab3.PackageGUI.ButtonManager.*
 import javafx.scene.paint.Color.*
 import scalafx.Includes.*
 import scalafx.application.JFXApp3
-import scalafx.beans.property.StringProperty
+import scalafx.beans.property.{BooleanProperty, StringProperty}
 import scalafx.collections.ObservableBuffer
 import scalafx.geometry.Insets
 import scalafx.scene.Scene
@@ -172,7 +172,7 @@ case class GUI(createdMenu: myMenu) extends JFXApp3 {
 
     //Кидаем в контейнер
     //Контейнер для удобства. Здесь не используется, но вообще с ним удобнее
-    buttonContainer.addButton("Add To Order", addToOrderButtonManager)
+    buttonContainer.addButton("AddToOrder", addToOrderButtonManager)
       .addButton("RemoveFromOrder", removeFromOrderButtonManager)
       .addButton("ClearOrder", clearOrderButtonManager)
       .addButton("CreateNewAddition", createNewAdditionButtonManager)
@@ -189,6 +189,7 @@ case class GUI(createdMenu: myMenu) extends JFXApp3 {
       totalCostText.text = updateTotalCostText()
     )
 
+    
     //ToolBar с пользовательскими кнопками
     val toolBarButtons = new ToolBar() {
       content = Seq(

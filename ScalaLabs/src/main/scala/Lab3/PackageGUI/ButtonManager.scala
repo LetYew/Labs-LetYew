@@ -114,6 +114,10 @@ object ButtonManager {
     val applyAdditionButton = new Button("Применить Добавку")
     val applyAdditionAction = ApplyAddition(applyAdditionDialog, orderedTable)
     
+    applyAdditionButton.disableProperty().bind(
+      orderedTable.selectionModel().selectedItemProperty().isNull
+    )
+    
     new ButtonManager(applyAdditionButton, applyAdditionAction)
   }
   
